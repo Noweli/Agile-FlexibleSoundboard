@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SoundBoard</string>
+    <string name="action_settings">Settings</string>
+    <string name="share">Share</string>
+    <string name="saveAs">Save as…</string>
+    <string name="favorite">Add to favorites</string>
+
+    <string-array name="soundNames">
+        <item>Dangerzone</item>
+        <item>Airhorn</item>
+        <item>Bing Bong</item>
+    </string-array>
+
+</resources>
