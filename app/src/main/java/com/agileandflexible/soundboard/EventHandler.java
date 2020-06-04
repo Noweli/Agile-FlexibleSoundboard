@@ -27,7 +27,7 @@ public class EventHandler {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                final String fileName = soundItem.getSoundName() + ".mp3";
+                final String fileName = soundItem.getSoundName();
                 final File soundFile = new File(EventHelper.GetDirectory(view), fileName);
 
                 switch (item.getItemId()) {
