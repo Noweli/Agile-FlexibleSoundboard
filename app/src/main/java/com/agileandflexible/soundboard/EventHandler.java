@@ -31,9 +31,6 @@ public class EventHandler {
                 final File soundFile = new File(EventHelper.GetDirectory(view), fileName);
 
                 switch (item.getItemId()) {
-                    case R.id.menu_save_as:
-                       EventHelper.SaveFile(view, soundItem, soundFile);
-                       break;
                     case R.id.menu_share:
                         EventHelper.SaveFile(view, soundItem, soundFile);
                         EventHelper.ShareFile(view, soundFile);

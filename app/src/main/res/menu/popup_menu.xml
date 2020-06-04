@@ -7,13 +7,8 @@
 
     </item>
     <item
-        android:id="@+id/menu_save_as"
-        android:title="@string/saveAs"
-        android:orderInCategory="2">
-    </item>
-    <item
-        android:id="@+id/menu_favorite"
-        android:title="@string/favorite"
+        android:id="@+id/change_icon"
+        android:title="@string/change_icon"
         android:orderInCategory="3">
     </item>
 </menu>

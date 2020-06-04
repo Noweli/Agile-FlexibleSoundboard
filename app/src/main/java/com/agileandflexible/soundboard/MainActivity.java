@@ -17,16 +17,10 @@ import android.widget.Button;
 
 import com.agileandflexible.soundboard.Helpers.SoundItemHelper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
     RecyclerView soundTilesRecyclerView;
     RecyclerViewAdapter soundTilesRecyclerViewAdapter;
     RecyclerView.LayoutManager recyclerViewLayoutManager;
-
-    List<String> soundNameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         soundTilesRecyclerView = findViewById(R.id.soundboardRecyclerView);
-        soundNameList = Arrays.asList(getResources().getStringArray(R.array.soundNames));
 
         recyclerViewLayoutManager = new GridLayoutManager(this, 3);
         soundTilesRecyclerViewAdapter = new RecyclerViewAdapter(SoundItemHelper.soundList);
