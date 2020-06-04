@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.agileandflexible.soundboard.Helpers.SoundItemHelper;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     RecyclerViewAdapter soundTilesRecyclerViewAdapter;
     RecyclerView.LayoutManager recyclerViewLayoutManager;
 
-    ArrayList<SoundItem> soundList;
     List<String> soundNameList;
 
     @Override
@@ -36,16 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
         soundTilesRecyclerView = findViewById(R.id.soundboardRecyclerView);
         soundNameList = Arrays.asList(getResources().getStringArray(R.array.soundNames));
-        soundList = new ArrayList<>();
 
         recyclerViewLayoutManager = new GridLayoutManager(this, 3);
-        soundTilesRecyclerViewAdapter = new RecyclerViewAdapter(soundList);
+        soundTilesRecyclerViewAdapter = new RecyclerViewAdapter(SoundItemHelper.soundList);
         soundTilesRecyclerView.setLayoutManager(recyclerViewLayoutManager);
         soundTilesRecyclerView.setAdapter(soundTilesRecyclerViewAdapter);
 
-        FillSoundList();
         requestPermission();
         EventHandler.SetRecordButton(findViewById(R.id.activity_main), (Button) findViewById(R.id.record_button));
+        SoundItemHelper.GetSoundListFromFolder(findViewById(R.id.activity_main));
     }
 
     @Override
@@ -62,12 +62,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         EventHandler.releaseMediaPlayer();
-    }
-
-    private void FillSoundList(){
-        soundList.add(new SoundItem(R.raw.audio01, soundNameList.get(0)));
-        soundList.add(new SoundItem(R.raw.audio02, soundNameList.get(1)));
-        soundList.add(new SoundItem(R.raw.audio03, soundNameList.get(2)));
     }
 
     private void requestPermission(){

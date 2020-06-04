@@ -5,6 +5,7 @@ import android.media.MediaRecorder;
 import android.util.Log;
 import android.view.View;
 
+import java.io.File;
 import java.io.IOException;
 
 public class EventMediaHelper {
@@ -15,13 +16,15 @@ public class EventMediaHelper {
     private static MediaPlayer mediaPlayer;
     private static MediaRecorder mediaRecorder;
 
-    public static void PlayMedia(View view, int soundId) {
+    public static void PlayMedia(String filePath) {
         try {
             if (mediaPlayer != null) mediaPlayer.reset();
-            mediaPlayer = MediaPlayer.create(view.getContext(), soundId);
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.setDataSource(filePath);
+            mediaPlayer.prepare();
             mediaPlayer.start();
         } catch (Exception e) {
-            Log.e(LOG_TAG, "Failed to initialize MediaPlayer");
+            Log.e(LOG_TAG, "Failed to initialize MediaPlayer - " + e.getMessage());
         }
     }
 

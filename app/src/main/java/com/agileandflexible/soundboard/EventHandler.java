@@ -11,8 +11,8 @@ import com.agileandflexible.soundboard.Helpers.EventMediaHelper;
 import java.io.File;
 
 public class EventHandler {
-    public static void startMediaPlayer(View view, int soundId){
-        EventMediaHelper.PlayMedia(view, soundId);
+    public static void startMediaPlayer(String filePath){
+        EventMediaHelper.PlayMedia(filePath);
     }
 
     public static void releaseMediaPlayer(){

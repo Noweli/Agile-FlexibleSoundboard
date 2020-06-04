@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agileandflexible.soundboard.Helpers.EventHelper;
+
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.SoundboardViewHolder> {
@@ -31,7 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventHandler.startMediaPlayer(v, soundList.get(position).getSoundId());
+                EventHandler.startMediaPlayer(EventHelper.GetDirectory(v) + "/" + soundList.get(position).getSoundName());
             }
         });
 
