@@ -29,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull SoundboardViewHolder holder, final int position) {
-        holder.textView.setText(soundList.get(position).getSoundName());
+        holder.textView.setText(soundList.get(position).getSoundName().substring(0, soundList.get(position).getSoundName().indexOf('.')));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

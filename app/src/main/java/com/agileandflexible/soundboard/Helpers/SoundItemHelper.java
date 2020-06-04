@@ -2,6 +2,7 @@ package com.agileandflexible.soundboard.Helpers;
 
 import android.view.View;
 
+import com.agileandflexible.soundboard.RecyclerViewAdapter;
 import com.agileandflexible.soundboard.SoundItem;
 
 import java.io.File;
@@ -18,5 +19,11 @@ public class SoundItemHelper {
         for (File soundFile : soundFiles) {
             soundList.add(new SoundItem(soundIndex, soundFile.getName()));
         }
+    }
+
+    public static void UpdateSoundListFromFolder(final View view, RecyclerViewAdapter adapter){
+        soundList.clear();
+        GetSoundListFromFolder(view);
+        adapter.notifyDataSetChanged();
     }
 }

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         soundTilesRecyclerView.setAdapter(soundTilesRecyclerViewAdapter);
 
         requestPermission();
-        EventHandler.SetRecordButton(findViewById(R.id.activity_main), (Button) findViewById(R.id.record_button));
+        EventHandler.SetRecordButton(findViewById(R.id.activity_main), (Button) findViewById(R.id.record_button), soundTilesRecyclerViewAdapter);
         SoundItemHelper.GetSoundListFromFolder(findViewById(R.id.activity_main));
     }
 

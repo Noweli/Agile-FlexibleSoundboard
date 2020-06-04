@@ -7,6 +7,7 @@ import android.widget.PopupMenu;
 
 import com.agileandflexible.soundboard.Helpers.EventHelper;
 import com.agileandflexible.soundboard.Helpers.EventMediaHelper;
+import com.agileandflexible.soundboard.Helpers.SoundItemHelper;
 
 import java.io.File;
 
@@ -44,7 +45,7 @@ public class EventHandler {
         popupMenu.show();
     }
 
-    public static void SetRecordButton(final View view, final Button button){
+    public static void SetRecordButton(final View view, final Button button, final RecyclerViewAdapter recyclerViewAdapter){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +53,7 @@ public class EventHandler {
                 if(EventMediaHelper.isRecording){
                     button.setText(R.string.stopRecording);
                 }else{
+                    SoundItemHelper.UpdateSoundListFromFolder(view, recyclerViewAdapter);
                     button.setText(R.string.recordNewSound);
                 }
             }
