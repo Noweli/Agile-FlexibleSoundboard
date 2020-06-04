@@ -3,7 +3,6 @@ package com.agileandflexible.soundboard;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +17,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
 
 public class EventHandler {
     private static final String LOG_TAG = "EVENTHANDLER";
@@ -80,6 +78,8 @@ public class EventHandler {
             Snackbar.make(view, "Saved file to: " + GetDirectory(view).getAbsolutePath(), Snackbar.LENGTH_SHORT);
         } catch (IOException e){
             Log.e(LOG_TAG, "Failed to save file");
+        } catch (Exception e){
+            Log.e(LOG_TAG, e.getMessage());
         }
     }
 
