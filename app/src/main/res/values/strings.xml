@@ -4,6 +4,8 @@
     <string name="share">Share</string>
     <string name="saveAs">Save as…</string>
     <string name="favorite">Add to favorites</string>
+    <string name="stopRecording">Stop recording</string>
+    <string name="recordNewSound">Record new sound</string>
 
     <string-array name="soundNames">
         <item>Dangerzone</item>

@@ -23,8 +23,18 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/soundboardRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/soundboardRecyclerView"
-        android:layout_below="@id/barLayout"/>
+        android:layout_above="@+id/record_button"
+        android:layout_below="@id/barLayout"
+        android:layout_marginBottom="2dp" />
+
+    <Button
+        android:id="@+id/record_button"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:text="@string/recordNewSound" />
 </RelativeLayout>

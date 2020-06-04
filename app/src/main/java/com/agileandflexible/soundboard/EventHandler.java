@@ -1,40 +1,22 @@
 package com.agileandflexible.soundboard;
 
-import android.content.Intent;
-import android.media.MediaPlayer;
-import android.net.Uri;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.PopupMenu;
 
-import androidx.core.content.FileProvider;
-
-import com.google.android.material.snackbar.Snackbar;
+import com.agileandflexible.soundboard.Helpers.EventHelper;
+import com.agileandflexible.soundboard.Helpers.EventMediaHelper;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class EventHandler {
-    private static final String LOG_TAG = "EVENTHANDLER";
-    private static MediaPlayer mediaPlayer;
-
     public static void startMediaPlayer(View view, int soundId){
-        try{
-            if(mediaPlayer != null) mediaPlayer.reset();
-            mediaPlayer = MediaPlayer.create(view.getContext(), soundId);
-            mediaPlayer.start();
-        }catch (Exception e){
-            Log.e(LOG_TAG, "Failed to initialize MediaPlayer");
-        }
+        EventMediaHelper.PlayMedia(view, soundId);
     }
 
     public static void releaseMediaPlayer(){
-        if(mediaPlayer != null) mediaPlayer.release();
-        mediaPlayer = null;
+        EventMediaHelper.ReleaseMediaPlayer();
     }
 
     public static void popupMenu(final View view, final SoundItem soundItem){
@@ -45,51 +27,34 @@ public class EventHandler {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 final String fileName = soundItem.getSoundName() + ".mp3";
-                final File soundFile = new File(GetDirectory(view), fileName);
+                final File soundFile = new File(EventHelper.GetDirectory(view), fileName);
 
                 switch (item.getItemId()) {
                     case R.id.menu_save_as:
-                       SaveFile(view, soundItem, soundFile);
+                       EventHelper.SaveFile(view, soundItem, soundFile);
                        break;
                     case R.id.menu_share:
-                        SaveFile(view, soundItem, soundFile);
-                        final String AUTHORITY = "com.agileandflexible.fileprovider";
-                        Uri contentUri = FileProvider.getUriForFile(view.getContext(), AUTHORITY, soundFile);
-                        final Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                        shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
-                        shareIntent.setType("audio/mp3");
-                        view.getContext().startActivity(Intent.createChooser(shareIntent, "Share sound tile"));
+                        EventHelper.SaveFile(view, soundItem, soundFile);
+                        EventHelper.ShareFile(view, soundFile);
                         break;
                 }
                 return true;
             }
         });
-
         popupMenu.show();
     }
 
-    private static void SaveFile(View view, SoundItem soundItem, File soundFile){
-        try (InputStream inputStream = view.getContext().getResources().openRawResource(soundItem.getSoundId()); OutputStream outputStream = new FileOutputStream(soundFile)){
-            byte[] buffer = new byte[1024];
-            int len;
-            while((len = inputStream.read(buffer, 0, buffer.length)) != -1){
-                outputStream.write(buffer, 0, len);
+    public static void SetRecordButton(final View view, final Button button){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventMediaHelper.RecordMedia(view);
+                if(EventMediaHelper.isRecording){
+                    button.setText(R.string.stopRecording);
+                }else{
+                    button.setText(R.string.recordNewSound);
+                }
             }
-            Snackbar.make(view, "Saved file to: " + GetDirectory(view).getAbsolutePath(), Snackbar.LENGTH_SHORT);
-        } catch (IOException e){
-            Log.e(LOG_TAG, "Failed to save file");
-        } catch (Exception e){
-            Log.e(LOG_TAG, e.getMessage());
-        }
-    }
-
-    private static File GetDirectory(View view){
-        File directory = new File(view.getContext().getExternalFilesDir(null) + "/flexibleSoundBoard");
-
-        if(!directory.mkdir()){
-            Log.wtf(LOG_TAG, "Directory not created!");
-        }
-
-        return directory;
+        });
     }
 }
