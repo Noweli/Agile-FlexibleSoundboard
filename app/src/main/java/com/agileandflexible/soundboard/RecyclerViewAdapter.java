@@ -12,13 +12,26 @@ import com.agileandflexible.soundboard.Helpers.EventHelper;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter representing sounds in app.
+ */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.SoundboardViewHolder> {
     private ArrayList<SoundItem> soundList;
 
+    /**
+     * Constructs adpater based on list of sounds.
+     * @param soundList List to initialize adapter.
+     */
     public RecyclerViewAdapter(ArrayList<SoundItem> soundList){
         this.soundList = soundList;
     }
 
+    /**
+     * Base method overridden. For more check android documentation.
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public SoundboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -26,6 +39,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new SoundboardViewHolder(view);
     }
 
+    /**
+     * Base method overridden. Sets path to files for media player. For more check android documentation.
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull SoundboardViewHolder holder, final int position) {
         holder.textView.setText(soundList.get(position).getSoundName().substring(0, soundList.get(position).getSoundName().indexOf('.')));
@@ -45,6 +63,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         });
     }
 
+    /**
+     * Returns number of sounds in list.
+     * @return Number of sounds in list.
+     */
     @Override
     public int getItemCount() {
         return soundList.size();
