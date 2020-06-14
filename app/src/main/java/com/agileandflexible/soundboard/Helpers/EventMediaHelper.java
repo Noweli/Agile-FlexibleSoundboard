@@ -8,14 +8,19 @@ import android.view.View;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Helper used to handle media related things like playing sounds and recording.
+ */
 public class EventMediaHelper {
     private static final String LOG_TAG = "EVENTMEDIAHELPER";
-
     public static boolean isRecording = false;
-
     private static MediaPlayer mediaPlayer;
     private static MediaRecorder mediaRecorder;
 
+    /**
+     * Plays media
+     * @param filePath Path to media to be played
+     */
     public static void PlayMedia(String filePath) {
         try {
             if (mediaPlayer != null) mediaPlayer.reset();
@@ -28,11 +33,18 @@ public class EventMediaHelper {
         }
     }
 
+    /**
+     * Releases media player. Used to release media player.
+     */
     public static void ReleaseMediaPlayer() {
         if (mediaPlayer != null) mediaPlayer.release();
         mediaPlayer = null;
     }
 
+    /**
+     * Initiate recording media. Sets flags and builds dialog.
+     * @param view View
+     */
     public static void RecordMedia(View view) {
         if (!isRecording) {
             EventHelper.BuildRecordFileAlertDialog(view);
@@ -43,6 +55,10 @@ public class EventMediaHelper {
         }
     }
 
+    /**
+     * Start recording sound. Sets media recorder params.
+     * @param filePath Path to save file.
+     */
     public static void StartRecording(String filePath) {
         if (mediaRecorder == null) {
             mediaRecorder = new MediaRecorder();
@@ -61,6 +77,9 @@ public class EventMediaHelper {
         mediaRecorder.start();
     }
 
+    /**
+     * Stop recording. Releases media recorder.
+     */
     public static void StopRecording(){
         mediaRecorder.stop();
         mediaRecorder.release();
