@@ -30,7 +30,7 @@ public class EventHelper {
             while((len = inputStream.read(buffer, 0, buffer.length)) != -1){
                 outputStream.write(buffer, 0, len);
             }
-            Snackbar.make(view, "Saved file to: " + GetDirectory(view).getAbsolutePath(), Snackbar.LENGTH_SHORT);
+            Snackbar.make(view, "Saved file to: " + GetDirectory(view).getAbsolutePath(), Snackbar.LENGTH_SHORT).show();
         } catch (IOException e){
             Log.e(LOG_TAG, "Failed to save file");
         } catch (Exception e){
