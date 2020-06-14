@@ -17,9 +17,6 @@ import android.widget.Button;
 
 import com.agileandflexible.soundboard.Helpers.SoundItemHelper;
 
-/**
- * Main app screen activity. Holds list of sounds and button to record new ones.
- */
 public class MainActivity extends AppCompatActivity {
     RecyclerView soundTilesRecyclerView;
     RecyclerViewAdapter soundTilesRecyclerViewAdapter;
@@ -60,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
         EventHandler.releaseMediaPlayer();
     }
 
-    /**
-     * Requests permissions - Write&Read storage and audio recording.
-     */
     private void requestPermission(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);

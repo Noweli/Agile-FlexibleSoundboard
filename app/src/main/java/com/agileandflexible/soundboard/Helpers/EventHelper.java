@@ -20,18 +20,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- *  Helper used to handle file related actions
- */
 public class EventHelper {
     private static final String LOG_TAG = "EVENTHELPER";
 
-    /**
-     * Saves file
-     * @param view View
-     * @param soundItem Sound item
-     * @param soundFile Sound file to save
-     */
     public static void SaveFile(View view, SoundItem soundItem, File soundFile){
         try (InputStream inputStream = view.getContext().getResources().openRawResource(soundItem.getSoundId()); OutputStream outputStream = new FileOutputStream(soundFile)){
             byte[] buffer = new byte[1024];
@@ -47,11 +38,6 @@ public class EventHelper {
         }
     }
 
-    /**
-     * Gets directory for app
-     * @param view View
-     * @return App directory as File
-     */
     public static File GetDirectory(View view){
         File directory = new File(view.getContext().getExternalFilesDir(null) + "/flexibleSoundBoard");
 
@@ -62,11 +48,6 @@ public class EventHelper {
         return directory;
     }
 
-    /**
-     * Shares sound
-     * @param view View
-     * @param soundFile File to share
-     */
     public static void ShareFile(View view, File soundFile) {
         final String AUTHORITY = "com.agileandflexible.fileprovider";
         Uri contentUri = FileProvider.getUriForFile(view.getContext(), AUTHORITY, soundFile);
@@ -76,10 +57,6 @@ public class EventHelper {
         view.getContext().startActivity(Intent.createChooser(shareIntent, "Share sound tile"));
     }
 
-    /**
-     * Builds alert dialog after recording
-     * @param view View
-     */
     public static void BuildRecordFileAlertDialog(final View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle("Sound name");

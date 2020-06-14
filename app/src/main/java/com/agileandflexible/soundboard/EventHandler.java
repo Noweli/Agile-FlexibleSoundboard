@@ -11,30 +11,15 @@ import com.agileandflexible.soundboard.Helpers.SoundItemHelper;
 
 import java.io.File;
 
-/**
- * Handler to handle events.
- */
 public class EventHandler {
-    /**
-     * Starts media player.
-     * @param filePath Path to media to be played.
-     */
     public static void startMediaPlayer(String filePath){
         EventMediaHelper.PlayMedia(filePath);
     }
 
-    /**
-     * Releases media player that can be later used to other things.
-     */
     public static void releaseMediaPlayer(){
         EventMediaHelper.ReleaseMediaPlayer();
     }
 
-    /**
-     * Creates popup menu for sound item.
-     * @param view View
-     * @param soundItem Sound item for which menu will be opened.
-     */
     public static void popupMenu(final View view, final SoundItem soundItem){
         PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
         popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
@@ -57,12 +42,6 @@ public class EventHandler {
         popupMenu.show();
     }
 
-    /**
-     * Set button used to record new sounds.
-     * @param view View
-     * @param button Button element which will be clicked
-     * @param recyclerViewAdapter Adapter representing sounds.
-     */
     public static void SetRecordButton(final View view, final Button button, final RecyclerViewAdapter recyclerViewAdapter){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
