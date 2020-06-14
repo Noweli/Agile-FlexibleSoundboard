@@ -1,5 +1,8 @@
 package com.agileandflexible.soundboard;
 
+/**
+ * Class representing sounds in app.
+ */
 public class SoundItem {
     private int soundId;
     private String soundName;
